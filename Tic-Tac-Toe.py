@@ -28,7 +28,12 @@ while human != 'O' and human != 'X':
 print(arr)
 
 while '-' in arr:
-    place = int(input('Place: '))
+    while True:
+        try:
+            place = int(input('Place: '))
+            break
+        except:
+            continue
     if place not in places:
         
         if place == 1:
@@ -65,9 +70,10 @@ while '-' in arr:
                 elif places[-1] == 3 and arr[2,1] == '-':
                     arr[2,1] = computer
                 else:
-                    x = random.choice([0,1])
-                    y = 1 if x == 0 else 2
-                    arr[x,y] = computer
+                    if arr[2,1] == human and arr[0,1] == '-':
+                        arr[0,1] = computer
+                    elif arr[1,0] == human and arr[1,2] == '-':
+                        arr[1,2] = computer
                     
             if place == 2:
                 if places[-1] == 1 and arr[2,2] == '-':
@@ -100,12 +106,10 @@ while '-' in arr:
                 elif places[-1] == 1 and arr[2,1] == '-':
                     arr[2,1] = computer
                 else:
-                    x = random.choice([0,1])
-                    y = 1 if x == 0 else 0
-                    while arr[x,y] != '-':
-                        x = random.choice([0,1])
-                        y = 1 if x == 0 else 0
-                    arr[x,y] = computer
+                    if arr[2,1] == human and arr[0,1] == '-':
+                        arr[0,1] = computer
+                    elif arr[1,2] == human and arr[1,0] == '-':
+                        arr[1,0] = computer
                 
             if place == 4:
                 if places[-1] == 7 and arr[2,0] == '-':
@@ -180,12 +184,10 @@ while '-' in arr:
                 elif places[-1] == 1 and arr[1,0] == '-':
                     arr[1,0] = computer
                 else:
-                    x = random.choice([1,2])
-                    y = 2 if x == 1 else 1
-                    while arr[x,y] != '-':
-                        x = random.choice([1,2])
-                        y = 2 if x == 1 else 1
-                    arr[x,y] = computer
+                    if arr[0,1] == human and arr[2,1] == '-':
+                        arr[2,1] = computer
+                    elif arr[1,0] == human and arr[1,2] == '-':
+                        arr[1,2] = computer
 
             if place == 8:
                 if places[-1] == 9 and arr[0,0] == '-':
@@ -218,12 +220,10 @@ while '-' in arr:
                 elif places[-1] == 1 and arr[1,1] == '-':
                     arr[1,1] = computer
                 else:
-                    x = random.choice([0,1])
-                    y = 1 if x == 0 else 0
-                    while arr[x,y] != '-':
-                        x = random.choice([0,1])
-                        y = 1 if x == 0 else 0
-                    arr[x,y] = computer
+                    if arr[0,1] == human and arr[2,1] == '-':
+                        arr[2,1] = computer
+                    elif arr[1,2] == human and arr[1,0] == '-':
+                        arr[1,0] = computer
         
         else:
             x = random.randint(0,2)
@@ -243,3 +243,4 @@ while '-' in arr:
         places.append(place)
     else:
         print('Try again')
+quit()
